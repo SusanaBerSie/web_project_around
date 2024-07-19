@@ -1,15 +1,15 @@
 .header {
   width: 880px;
-  display: flex;
-  flex-direction: column;
 }
 
 .header__logo {
-  width: 33px;
-  height: 173px;
-  align-self: flex-start; /*corroborar*/
+  width: 173px;
+  height: 33px;
+  margin: 45px 707px 41px 0px;
 }
 
 .header__line {
   width: 100%;
+  color: #545454;
+  margin: 0px;
 }
