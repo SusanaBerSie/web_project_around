@@ -1,0 +1,22 @@
+.element {
+  background-color: #fff;
+}
+
+.element-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 24px 15px 25px 21px;
+}
+
+.element__title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  color: #000;
+}
+
+.element__icon {
+  width: 21px;
+  height: 19px;
+}
