@@ -9,3 +9,25 @@
   height: 33px;
   padding: 45px 707px 41px 0px;
 }
+
+/*@media screen and (max-width: 1278px) and (min-width: 768px) {
+  .header {
+    width: 584px;
+  }
+  .header__logo {
+    width: 150px;
+    height: 30px;
+    padding: 45px 707px 41px 0px;
+}
+}*/
+
+@media screen and (max-width: 767px) {
+  .header {
+    width: 282px;
+  }
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    padding: 28px 167px 32px 27px;
+  }
+}
