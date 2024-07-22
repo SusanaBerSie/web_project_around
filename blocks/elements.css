@@ -6,3 +6,22 @@
   grid-column-gap: 17px;
   grid-row-gap: 21px;
 }
+
+@media screen and (max-width: 1278px) and (min-width: 768px) {
+  .elements {
+    width: 584px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .elements {
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+  }
+}
