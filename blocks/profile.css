@@ -66,3 +66,56 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@media screen and (max-width: 767px) {
+  .profile {
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    margin: 42px 19px 36px;
+    justify-content: center;
+  }
+
+  .profile__box-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+
+  .profile__avatar {
+    padding-right: 0px;
+  }
+
+  .profile__box {
+    gap: 10px;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile__info-name {
+    font-size: 22px;
+    line-height: 27px;
+    padding-top: 30px;
+    padding-bottom: 14px;
+  }
+
+  .profile__info-subtitle {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .profile__info-edit {
+    width: 18px;
+    height: 18px;
+    align-self: baseline;
+  }
+
+  .profile__add-button {
+    width: 100%;
+  }
+}
