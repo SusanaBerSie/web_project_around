@@ -1,0 +1,41 @@
+.element {
+  width: 282px;
+  border-radius: 2%;
+}
+
+.element__image {
+  width: 100%;
+}
+
+.element-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 25px 15px 31px 21px;
+  align-items: baseline;
+}
+
+.element__title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  color: #000;
+  margin: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.element__icon {
+  width: 21px;
+  height: 19px;
+}
+
+.element__icon:active {
+  background-image: url(../images/heart_active.png);
+}
+
+.element__icon:hover {
+  background-image: url(../images/heart_hover.png);
+}

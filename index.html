@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Susana" />
+    <meta name="keywords" content="US traveling social-media" />
+    <meta name="description" content="Social media about traveling in US" />
+    <title>Around</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut-icon" href="#" />
+    <!-- preguntar-->
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/Vector-header.png"
+          alt="Around the US"
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__box-info">
+            <img
+              src="./images/avatar.jpg"
+              alt="Avatar"
+              class="profile__avatar"
+            />
+            <div class="profile__box">
+              <div class="profile__info">
+                <h1 class="profile__info-name">Jacques Cousteau</h1>
+                <h2 class="profile__info-subtitle">Explorador</h2>
+              </div>
+              <button
+                class="profile__info-edit"
+                id="open-edit-profile"
+              ></button>
+            </div>
+          </div>
+          <button class="profile__add-button"></button>
+        </section>
+        <section class="elements">
+          <div class="element">
+            <img
+              src="./images/valle_yosemite.jpg"
+              alt="Valle de Yosemite"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Valle de Yosemite</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/lago_Louise.jpg"
+              alt="Lago Louise"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Lago Louise</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/montañas_calvas.jpg"
+              alt="Montañas Calvas"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Montañas Calvas</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/Latemar.jpg"
+              alt="Latemar"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Latemar</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/Vanois.jpg"
+              alt="Vanois National Park"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Vanois National Park</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/Lago_di_Braies.jpg"
+              alt="Lago di Braies"
+              class="element__image"
+            />
+            <div class="element-box">
+              <h2 class="element__title">Lago di Braies</h2>
+              <img src="./images/heart.png" alt="like" class="element__icon" />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p>© 2024 Around The U.S.</p>
+      </footer>
+      <section class="popup popup_profile">
+        <div class="popup__overlay"></div>
+        <img
+          class="popup__add-button"
+          src="./images/add-button.png"
+          id="close-edit-profile"
+        />
+        <div class="popup__container">
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form">
+            <fieldset class="popup__fieldset">
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_name"
+                name="name"
+                placeholder="Nombre"
+              />
+
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_aboutme"
+                name="aboutme"
+                placeholder="Acerca de mí"
+              />
+            </fieldset>
+            <fieldset class="popup__button">
+              <button type="submit" class="popup__button-item">Guardar</button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+      <section class="popup popup__card"></section>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
