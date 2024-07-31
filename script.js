@@ -1,28 +1,3 @@
-// const open = document.getElementById("open-edit-profile");
-// const popup = document.getElementById("popup");
-// const close = document.getElementById("close-edit-profile");
-
-// open.addEventListener("click", () => {
-//   popup.classList.add("show");
-// });
-
-// close.addEventListener("click", () => {
-//   popup.classList.remove("show");
-// });
-
-// let open = document.querySelector(".profile__info-edit");
-// let popup = document.querySelector(".popup");
-// let close = document.querySelector(".popup__add-button");
-// function showClick() {}
-
-//const openPopup = document.querySelector(".profile__info-edit");
-
-/*
-openPopup.addEventListener("click", () => {
-  openPopup.classList.add("popup--show");
-});
-*/
-
 const buttonEditProfile = document.querySelector(".profile__info-edit");
 const buttonAddCard = document.querySelector(".profile__add-button");
 const popupProfile = document.querySelector(".popup_profile");
