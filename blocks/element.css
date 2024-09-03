@@ -8,6 +8,11 @@
   border-radius: 4% 4% 0% 0%;
 }
 
+.element__image-box {
+  width: 100%;
+  position: relative;
+}
+
 .element-box {
   display: flex;
   flex-direction: row;
@@ -29,9 +34,17 @@
   overflow: hidden;
 }
 
-.element__icon {
+.element__icon-like {
   width: 21px;
   height: 19px;
+}
+
+.element__icon-trash {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .element__icon:active {
