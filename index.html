@@ -209,6 +209,37 @@
           </form>
         </div>
       </section>
+      <section class="popup popup__card">
+        <div class="popup__overlay"></div>
+        <img
+          class="popup__add-button"
+          src="./images/add-button.png"
+          alt="close-pupop-button"
+        />
+        <div class="popup__container">
+          <h2 class="popup__title">Añadir foto</h2>
+          <form class="popup__form">
+            <fieldset class="popup__fieldset">
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_title"
+                name="title"
+                placeholder="Title"
+              />
+
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_url"
+                name="url"
+                placeholder="URL de la foto"
+              />
+            </fieldset>
+            <fieldset class="popup__button">
+              <button type="submit" class="popup__button-item">Guardar</button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
 
       <section class="popup popup__card"></section>
     </div>
