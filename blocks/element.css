@@ -47,10 +47,10 @@
   height: 20px;
 }
 
-.element__icon:active {
+.element__icon-like:active {
   background-image: url(../images/heart_active.png);
 }
 
-.element__icon:hover {
+.element__icon-like:hover {
   background-image: url(../images/heart_hover.png);
 }
