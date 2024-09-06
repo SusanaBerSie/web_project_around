@@ -83,7 +83,7 @@
 
 .profile__add-button:hover {
   color: #c4c4c4;
-  background-image: url(../images/rectangle_hover.png);
+  background-image: url(../images/add-hover.png);
 }
 
 @media screen and (max-width: 880px) and (min-width: 544px) {

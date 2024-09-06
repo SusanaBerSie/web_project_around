@@ -7,13 +7,12 @@ const jobProfile = document.querySelector(".profile__info-subtitle");
 const formProfile = popupProfile.querySelector(".popup__form-profile");
 const inputName = formProfile.querySelector(".popup__form-item_name");
 const inputAboutme = formProfile.querySelector(".popup__form-item_aboutme");
-const popupCard = document.querySelector(".popup_card");
+const popupCard = document.querySelector(".popup__card");
 const inputTitle = document.querySelector(".popup__form-item_title");
 const inputUrl = document.querySelector(".popup__form-item_url");
-const titleCard = document.querySelector(".element__title");
-const imageCard = document.querySelector(".element__image");
 const formCard = document.querySelector(".popup__form-card");
-const resetCard = document.querySelector(".element__icon-trash");
+const popupImage = document.querySelector(".popup__image");
+const elementsSection = document.querySelector(".elements");
 
 const initialCards = [
   {
@@ -42,12 +41,41 @@ const initialCards = [
   },
 ];
 
+function generateCard(name, link) {
+  const templateCard = document
+    .querySelector(".card-template")
+    .content.querySelector(".element");
+  const card = templateCard.cloneNode(true);
+  const nodeImage = card.querySelector(".element__image");
+  const nodeText = card.querySelector(".element__title");
+  const nodeTrash = card.querySelector(".element__icon-trash");
+  const nodeLike = card.querySelector(".element__icon-like");
+  nodeImage.alt = name;
+  nodeImage.src = link;
+  nodeText.textContent = name;
+  nodeTrash.addEventListener("click", function () {
+    card.remove();
+  });
+  nodeLike.addEventListener("click", function () {
+    nodeLike.classList.toggle("element__icon-like_active");
+  });
+  nodeImage.addEventListener("click", function () {
+    openPopup(popupImage);
+    popupImage.querySelector(".popup__photo").src = link;
+    popupImage.querySelector(".popup__photo").alt = name;
+    popupImage.querySelector(".popup__photo-title").textContent = name;
+  });
+  return card;
+}
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
 
 function closePopups() {
   popupProfile.classList.remove("popup_opened");
+  popupImage.classList.remove("popup_opened");
+  popupCard.classList.remove("popup_opened");
 }
 
 buttonEditProfile.addEventListener("click", function () {
@@ -69,31 +97,21 @@ formProfile.addEventListener("submit", function (event) {
   }
 });
 
-//añadir foto
 buttonAddCard.addEventListener("click", function () {
   openPopup(popupCard);
-  inputTitle.value = titleCard.textContent;
-  inputUrl.value = imageCard.getAttribute("src");
 });
 
-//al oprimir 'guardar' se cierre el popup y se agregue la tarjeta de primeras
 formCard.addEventListener("submit", function (event) {
   event.preventDefault();
   if (inputTitle.value && inputUrl.value) {
-    titleCard.textContent = inputTitle.value;
-    imageCard.getAttribute = inputUrl;
+    const card = generateCard(inputTitle.value, inputUrl.value);
+    elementsSection.prepend(card);
+    formCard.reset();
     closePopups();
   }
-  const cardBox = document.querySelector(".element");
-  cardBox.append(titleCard, imageCard);
-  initialCards.append(cardBox);
 });
 
-//Eliminar foto
-resetCard.addEventListener("click", function () {
-  Element.forEach((item) => {
-    item.remove();
-  });
+initialCards.forEach(function (element) {
+  const card = generateCard(element.name, element.link);
+  elementsSection.append(card);
 });
-
-//Ventana emergente de las fotos

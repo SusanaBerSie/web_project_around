@@ -6,6 +6,7 @@
 .element__image {
   width: 100%;
   border-radius: 4% 4% 0% 0%;
+  height: 282px;
 }
 
 .element__image-box {
@@ -47,10 +48,10 @@
   height: 20px;
 }
 
-.element__icon-like:active {
-  background-image: url(../images/heart_active.png);
+.element__icon-like_active {
+  background-image: url(../images/black_heart.png);
 }
 
 .element__icon-like:hover {
-  background-image: url(../images/heart_hover.png);
+  background-image: url(../images/black_heart.png);
 }

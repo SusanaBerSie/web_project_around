@@ -40,145 +40,12 @@
           </div>
           <button class="profile__add-button"></button>
         </section>
-        <section class="elements">
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/valle_yosemite.jpg"
-                alt="Valle de Yosemite"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Valle de Yosemite</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/lago_Louise.jpg"
-                alt="Lago Louise"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Lago Louise</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/montañas_calvas.jpg"
-                alt="Montañas Calvas"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Montañas Calvas</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/Latemar.jpg"
-                alt="Latemar"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Latemar</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/Vanois.jpg"
-                alt="Vanois National Park"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Vanois National Park</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-          <div class="element">
-            <div class="element__image-box">
-              <img
-                src="./images/Lago_di_Braies.jpg"
-                alt="Lago di Braies"
-                class="element__image"
-              />
-              <img
-                src="./images/trash.png"
-                alt="trash"
-                class="element__icon-trash"
-              />
-            </div>
-            <div class="element-box">
-              <h2 class="element__title">Lago di Braies</h2>
-              <img
-                src="./images/heart.png"
-                alt="like"
-                class="element__icon-like"
-              />
-            </div>
-          </div>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <p>© 2024 Around The U.S.</p>
       </footer>
-      <section class="popup popup_profile">
+      <div class="popup popup_profile">
         <div class="popup__overlay"></div>
         <img
           class="popup__add-button"
@@ -187,7 +54,7 @@
         />
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
-          <form class="popup__form">
+          <form class="popup__form-profile">
             <fieldset class="popup__fieldset">
               <input
                 type="text"
@@ -208,8 +75,8 @@
             </fieldset>
           </form>
         </div>
-      </section>
-      <section class="popup popup__card">
+      </div>
+      <div class="popup popup__card">
         <div class="popup__overlay"></div>
         <img
           class="popup__add-button"
@@ -218,7 +85,7 @@
         />
         <div class="popup__container">
           <h2 class="popup__title">Añadir foto</h2>
-          <form class="popup__form">
+          <form class="popup__form-card">
             <fieldset class="popup__fieldset">
               <input
                 type="text"
@@ -228,7 +95,7 @@
               />
 
               <input
-                type="text"
+                type="url"
                 class="popup__form-item popup__form-item_url"
                 name="url"
                 placeholder="URL de la foto"
@@ -239,10 +106,40 @@
             </fieldset>
           </form>
         </div>
-      </section>
-
-      <section class="popup popup__card"></section>
+      </div>
+      <div class="popup popup__image">
+        <div class="popup__overlay"></div>
+        <div class="popup__image-zoom">
+          <img
+            class="popup__add-button"
+            src="./images/add-button.png"
+            alt="close-pupop-button"
+          />
+          <img class="popup__photo" src="" alt="" />
+          <p class="popup__photo-title"></p>
+        </div>
+      </div>
     </div>
+    <template class="card-template">
+      <div class="element">
+        <div class="element__image-box">
+          <img
+            src="./images/valle_yosemite.jpg"
+            alt="Valle de Yosemite"
+            class="element__image"
+          />
+          <img
+            src="./images/trash.png"
+            alt="trash"
+            class="element__icon-trash"
+          />
+        </div>
+        <div class="element-box">
+          <h2 class="element__title">Valle de Yosemite</h2>
+          <img src="./images/heart.png" alt="like" class="element__icon-like" />
+        </div>
+      </div>
+    </template>
     <script src="./script.js"></script>
   </body>
 </html>
