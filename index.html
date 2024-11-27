@@ -61,8 +61,37 @@
                 class="popup__form-item popup__form-item_name"
                 name="name"
                 placeholder="Nombre"
+                required
+                minlength="2"
+                maxlength="40"
               />
 
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_aboutme"
+                name="aboutme"
+                placeholder="Acerca de mí"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+            </fieldset>
+            <fieldset class="popup__button">
+              <button type="submit" class="popup__button-item">Guardar</button>
+            </fieldset>
+          </form>
+        </div>
+        <!-- <div class="popup__container-error">
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form-profile">
+            <fieldset class="popup__fieldset">
+              <input
+                type="text"
+                class="popup__form-item popup__form-item_name"
+                name="name"
+                placeholder="Nombre"
+              />
+              <p class="popup__input-error">Por favor, rellena este campo.</p>
               <input
                 type="text"
                 class="popup__form-item popup__form-item_aboutme"
@@ -74,7 +103,7 @@
               <button type="submit" class="popup__button-item">Guardar</button>
             </fieldset>
           </form>
-        </div>
+        </div> -->
       </div>
       <div class="popup popup__card">
         <div class="popup__overlay"></div>
