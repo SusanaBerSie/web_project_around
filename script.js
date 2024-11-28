@@ -13,6 +13,9 @@ const inputUrl = document.querySelector(".popup__form-item_url");
 const formCard = document.querySelector(".popup__form-card");
 const popupImage = document.querySelector(".popup__image");
 const elementsSection = document.querySelector(".elements");
+const formElement = document.querySelector(".popup__form-profile");
+const formInput = document.querySelector(".popup__form-item");
+const inputError = document.querySelector(`.${formInput.id}-error`);
 
 const initialCards = [
   {
@@ -115,3 +118,32 @@ initialCards.forEach(function (element) {
   const card = generateCard(element.name, element.link);
   elementsSection.append(card);
 });
+
+// Sprint9
+
+const showError = (input, errorMessage) => {
+  input.classList.add(inputError);
+  inputError.textContent = errorMessage;
+  inputError.classList.add(".popup__form-Error");
+};
+
+const hideError = (input) => {
+  input.classList.remove(inputError);
+  inputError.textContent = "";
+};
+
+const checkInputValidity = () => {
+  if (!formInput.validity.valid) {
+    showError(formInput, formInput.validationMessage);
+  } else {
+    hideError(formInput);
+  }
+};
+
+const buttonActive = (button) => {
+  if (!checkInputValidity.validity.valid) {
+    button.classList.remove(".popup__button-item:active");
+  } else {
+    button.classList.add(".popup__button-item:active");
+  }
+};
