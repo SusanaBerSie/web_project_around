@@ -117,6 +117,11 @@
   background-image: url(../images/black_rectangle.jpg);
 }
 
+.popup__form-Error {
+  border-bottom-color: red;
+}
+
+/* primer intento
 .popup__form-inputError {
   visibility: hidden;
   font-size: 14px;
@@ -124,7 +129,7 @@
   line-height: 17px;
   border: none;
   border-bottom: solid 1px red;
-}
+} */
 
 @media screen and (max-width: 544px) {
   .popup {

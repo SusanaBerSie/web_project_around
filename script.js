@@ -13,9 +13,6 @@ const inputUrl = document.querySelector(".popup__form-item_url");
 const formCard = document.querySelector(".popup__form-card");
 const popupImage = document.querySelector(".popup__image");
 const elementsSection = document.querySelector(".elements");
-const formElement = document.querySelector(".popup__form-profile");
-const formInput = document.querySelector(".popup__form-item");
-const inputError = document.querySelector(`.${formInput.id}-error`);
 
 const initialCards = [
   {
@@ -121,22 +118,28 @@ initialCards.forEach(function (element) {
 
 // Sprint9
 
-const showError = (input, errorMessage) => {
-  input.classList.add(inputError);
+const formElement = document.querySelector(".popup__form");
+const inputElement = document.querySelector(".popup__form-item");
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const inputError = document.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(xxxx);
   inputError.textContent = errorMessage;
   inputError.classList.add(".popup__form-Error");
 };
 
-const hideError = (input) => {
-  input.classList.remove(inputError);
+const hideInputError = (formElement, inputElement) => {
+  const inputError = document.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(xxxx);
+  inputError.classList.remove(".popup__form-Error");
   inputError.textContent = "";
 };
 
-const checkInputValidity = () => {
-  if (!formInput.validity.valid) {
-    showError(formInput, formInput.validationMessage);
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    hideError(formInput);
+    hideInputError(formElement, inputElement);
   }
 };
 
@@ -146,4 +149,15 @@ const buttonActive = (button) => {
   } else {
     button.classList.add(".popup__button-item:active");
   }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(
+    formElement.querySelectorAll(".popup__form-item")
+  );
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+    });
+  });
 };
