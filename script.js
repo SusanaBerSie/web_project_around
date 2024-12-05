@@ -5,11 +5,11 @@ const closeButtons = document.querySelectorAll(".popup__add-button");
 const nameProfile = document.querySelector(".profile__info-name");
 const jobProfile = document.querySelector(".profile__info-subtitle");
 const formProfile = popupProfile.querySelector(".popup__form-profile");
-const inputName = formProfile.querySelector(".popup__form-item_name");
-const inputAboutme = formProfile.querySelector(".popup__form-item_aboutme");
+const inputName = inputElement.querySelector("name-input");
+const inputAboutme = inputElement.querySelector("aboutme-input");
 const popupCard = document.querySelector(".popup__card");
-const inputTitle = document.querySelector(".popup__form-item_title");
-const inputUrl = document.querySelector(".popup__form-item_url");
+const inputTitle = inputElement.querySelector("photoTitle-input");
+const inputUrl = inputElement.querySelector("photoUrl-input");
 const formCard = document.querySelector(".popup__form-card");
 const popupImage = document.querySelector(".popup__image");
 const elementsSection = document.querySelector(".elements");
@@ -119,7 +119,7 @@ initialCards.forEach(function (element) {
 // Sprint9
 
 const formElement = document.querySelector(".popup__form");
-const inputElement = document.querySelector(".popup__form-item");
+const inputElement = document.querySelector(".popup__input");
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const inputError = document.querySelector(`.${inputElement.id}-error`);
@@ -143,6 +143,36 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(
+    formElement.querySelectorAll(".popup__input")
+  );
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+    });
+  });
+};
+
+const enableValidation = (enableValidation ({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+});) => {
+  const formList = Array.from (document.querySelectorAll("xxx.formularioMadre"));
+  formList.forEach ((formElement) => {
+    formElement.addEventListener ("submit", function (evt) {
+      evt.preventDefault ();
+    });
+    setEventListeners (formElement);
+  });
+};
+
+enableValidation ();
+
 const buttonActive = (button) => {
   if (!checkInputValidity.validity.valid) {
     button.classList.remove(".popup__button-item:active");
@@ -151,13 +181,8 @@ const buttonActive = (button) => {
   }
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(".popup__form-item")
-  );
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-    });
-  });
+closePopups.addEventListener ("keydown", function (evt) {
+if (evt.key===27) {
+  closePopups (popupCard);
 };
+});
