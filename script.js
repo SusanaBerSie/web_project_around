@@ -154,14 +154,14 @@ const setEventListeners = (formElement) => {
   });
 };
 
-const enableValidation = (enableValidation ({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible"
-});) => {
+// const enableValidation = (enableValidation ({
+//   formSelector: ".popup__form",
+//   inputSelector: ".popup__input",
+//   submitButtonSelector: ".popup__button",
+//   inactiveButtonClass: "popup__button_disabled",
+//   inputErrorClass: "popup__input_type_error",
+//   errorClass: "popup__error_visible"
+// });) => {
   const formList = Array.from (document.querySelectorAll("xxx.formularioMadre"));
   formList.forEach ((formElement) => {
     formElement.addEventListener ("submit", function (evt) {
@@ -185,4 +185,9 @@ closePopups.addEventListener ("keydown", function (evt) {
 if (evt.key===27) {
   closePopups (popupCard);
 };
+});
+
+formElement.forEach (function (overlay) {
+  const overlay = document.querySelector (".popup__overlay");
+  overlay.addEventListener ("click", closePopups);
 });
