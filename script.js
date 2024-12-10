@@ -5,11 +5,11 @@ const closeButtons = document.querySelectorAll(".popup__add-button");
 const nameProfile = document.querySelector(".profile__info-name");
 const jobProfile = document.querySelector(".profile__info-subtitle");
 const formProfile = popupProfile.querySelector(".popup__form-profile");
-const inputName = inputElement.querySelector("name-input");
-const inputAboutme = inputElement.querySelector("aboutme-input");
+const inputName = document.querySelector("#name-input");
+const inputAboutme = document.querySelector("#aboutme-input");
 const popupCard = document.querySelector(".popup__card");
-const inputTitle = inputElement.querySelector("photoTitle-input");
-const inputUrl = inputElement.querySelector("photoUrl-input");
+const inputTitle = document.querySelector("#photoTitle-input");
+const inputUrl = document.querySelector("#photoUrl-input");
 const formCard = document.querySelector(".popup__form-card");
 const popupImage = document.querySelector(".popup__image");
 const elementsSection = document.querySelector(".elements");
@@ -41,6 +41,12 @@ const initialCards = [
   },
 ];
 
+function keyPressEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopups(popupCard);
+  }
+}
+
 function generateCard(name, link) {
   const templateCard = document
     .querySelector(".card-template")
@@ -70,9 +76,11 @@ function generateCard(name, link) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", keyPressEsc);
 }
 
 function closePopups() {
+  document.removeEventListener("keydown", keyPressEsc);
   popupProfile.classList.remove("popup_opened");
   popupImage.classList.remove("popup_opened");
   popupCard.classList.remove("popup_opened");
@@ -121,73 +129,14 @@ initialCards.forEach(function (element) {
 const formElement = document.querySelector(".popup__form");
 const inputElement = document.querySelector(".popup__input");
 
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const inputError = document.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(xxxx);
-  inputError.textContent = errorMessage;
-  inputError.classList.add(".popup__form-Error");
-};
-
-const hideInputError = (formElement, inputElement) => {
-  const inputError = document.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(xxxx);
-  inputError.classList.remove(".popup__form-Error");
-  inputError.textContent = "";
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
+/*
+closePopups.addEventListener("keydown", function (evt) {
+  if (evt.key === 27) {
+    closePopups(popupCard);
   }
-};
-
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(".popup__input")
-  );
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-    });
-  });
-};
-
-// const enableValidation = (enableValidation ({
-//   formSelector: ".popup__form",
-//   inputSelector: ".popup__input",
-//   submitButtonSelector: ".popup__button",
-//   inactiveButtonClass: "popup__button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: "popup__error_visible"
-// });) => {
-  const formList = Array.from (document.querySelectorAll("xxx.formularioMadre"));
-  formList.forEach ((formElement) => {
-    formElement.addEventListener ("submit", function (evt) {
-      evt.preventDefault ();
-    });
-    setEventListeners (formElement);
-  });
-};
-
-enableValidation ();
-
-const buttonActive = (button) => {
-  if (!checkInputValidity.validity.valid) {
-    button.classList.remove(".popup__button-item:active");
-  } else {
-    button.classList.add(".popup__button-item:active");
-  }
-};
-
-closePopups.addEventListener ("keydown", function (evt) {
-if (evt.key===27) {
-  closePopups (popupCard);
-};
 });
-
-formElement.forEach (function (overlay) {
-  const overlay = document.querySelector (".popup__overlay");
-  overlay.addEventListener ("click", closePopups);
+*/
+const overlays = document.querySelectorAll(".popup__overlay");
+overlays.forEach(function (overlay) {
+  overlay.addEventListener("click", closePopups);
 });

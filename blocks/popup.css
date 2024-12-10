@@ -97,6 +97,7 @@
   margin: 0px;
   color: #c4c4c4;
   background-color: white;
+  cursor: pointer;
 }
 
 .popup__photo {
@@ -113,12 +114,16 @@
   background-image: url(../images/popup-button_hover.jpg);
 }
 
-.popup__button-item:active {
+.popup__button-item_active {
   background-image: url(../images/black_rectangle.jpg);
 }
 
-.popup__form-Error {
+.popup__input_type_error {
   border-bottom-color: red;
+}
+
+.popup__error {
+  color: red;
 }
 
 /* primer intento

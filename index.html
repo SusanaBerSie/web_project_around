@@ -66,6 +66,7 @@
                 minlength="2"
                 maxlength="40"
               />
+              <span class="popup__error name-input-error"></span>
               <input
                 type="text"
                 class="popup__input"
@@ -76,15 +77,13 @@
                 minlength="2"
                 maxlength="200"
               />
+              <span class="popup__error aboutme-input-error"></span>
             </fieldset>
             <fieldset class="popup__button">
               <button type="submit" class="popup__button-item">Guardar</button>
             </fieldset>
           </form>
         </div>
-        <span class="popup__form-inputError"
-          >Por favor, rellena este campo.</span
-        >
       </div>
       <div class="popup popup__card">
         <div class="popup__overlay"></div>
@@ -107,7 +106,7 @@
                 minlength="2"
                 maxlength="30"
               />
-
+              <span class="popup__error photoTitle-input-error"></span>
               <input
                 required
                 type="url"
@@ -116,6 +115,7 @@
                 name="url"
                 placeholder="URL de la foto"
               />
+              <span class="popup__error photoUrl-input-error"></span>
             </fieldset>
             <fieldset class="popup__button">
               <button type="submit" class="popup__button-item">Guardar</button>
@@ -157,5 +157,6 @@
       </div>
     </template>
     <script src="./script.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>
