@@ -14,4 +14,4 @@ En la página el usuario puede crear su perfil agregando una foto y su nombre, a
 
 # Link de acceso
 
-https://github.com/SusanaBerSie/web_project_around
+https://susanabersie.github.io/web_project_around/
