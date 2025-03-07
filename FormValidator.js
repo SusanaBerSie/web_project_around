@@ -11,18 +11,18 @@ todos los controladores necesarios.
 - Crea una instancia de la clase FormValidator para cada formulario que deba ser validado.
  */
 
-class FormValidator () {
-  constructor (formVal, algoMas);
+class FormValidator {
+  constructor(formConfig, inputElement) {
+    this.formConfig = formConfig;
+    this.inputElement = inputElement;
+  }
 
-  _checkInputValidity (formElement, inputElement, formConfig) {  //puede ser objeto si ya es constante?
-    this._formElement = formElement;
-    this._inputElement = inputElement;
-    /* this._formConfig = formConfig; */
-    if (!_inputElement.validity.valid) {
+  _checkInputValidity() {
+    if (!inputElement.validity.valid) {
       showInputError(
         _formElement,
         _inputElement,
-        _inputElement.validationMessage,
+        _inputElement.validationMessage
         /*_formConfig*/
       );
     } else {
@@ -30,9 +30,26 @@ class FormValidator () {
     }
   }
 
-  _setEventListeners (_formElement, formConfig) { //_formElement ya se pone privado?
+  _buttonActive(button, inputList, formConfig) {
+    this._button = button; //change spelling?
+    this._inputList = inputList;
+    /* this._formConfig = formConfig; mencionarlo nuevamente?*/
+
+    const valid = _inputList.every((input) => input.validity.valid);
+    if (!valid) {
+      _button.classList.remove(formConfig.inactiveButtonClass);
+      _button.disabled = true;
+    } else {
+      _button.classList.add(formConfig.inactiveButtonClass);
+      _button.disabled = false;
+    }
+  }
+
+  _setEventListeners(_formElement, formConfig) {
+    //_formElement ya se pone privado?
     const button = formElement.querySelector(formConfig.submitButtonSelector); //se define con this?
-    const inputList = Array.from( //se define con this?
+    const inputList = Array.from(
+      //se define con this?
       formElement.querySelectorAll(formConfig.inputSelector)
     );
     inputList.forEach((inputElement) => {
@@ -42,21 +59,6 @@ class FormValidator () {
       });
     });
     buttonActive(button, inputList, formConfig);
-   }
-
-  _buttonActive (button, inputList, formConfig) {
-    this._button = button;  //change spelling?
-    this._inputList = inputList;
-    /* this._formConfig = formConfig; mencionarlo nuevamente?*/
-
-    const valid = _inputList.every((input) => input.validity.valid);
-   if (!valid) {
-    _button.classList.remove(formConfig.inactiveButtonClass);
-    _button.disabled = true;
-   } else {
-    _button.classList.add(formConfig.inactiveButtonClass);
-    _button.disabled = false;
-   }
   }
 
   enableValidation = (formConfig) => {
@@ -74,5 +76,4 @@ class FormValidator () {
 
 //falta enableValidation, showInputError y hideInputError
 
-
-export {FormValidator};
+export { FormValidator };

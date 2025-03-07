@@ -22,5 +22,5 @@
     popupImage.querySelector(".popup__photo").alt = name;
     popupImage.querySelector(".popup__photo-title").textContent = name;
   });
-  return card; // al final de qué va?
+  return card;
 }*/

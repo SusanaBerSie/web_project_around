@@ -1,60 +1,47 @@
-// CONTROLADORES DE EVENTOS Y FUNCIÓN ABRE Y CIERRA popups
+/* import {
+  handlerButtonProfile,
+  buttonEditProfile,
+  closeButtons,
+} from "./script.js";*/
 
-function keyPressEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopups(popupCard);
-  }
-}
-
-function openPopup(popup) {
+//abrir popup
+const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", keyPressEsc);
-}
+};
 
-function closePopups() {
+/*//cerrar popup
+const closePopups = () => {
   document.removeEventListener("keydown", keyPressEsc);
   popupProfile.classList.remove("popup_opened");
   popupImage.classList.remove("popup_opened");
   popupCard.classList.remove("popup_opened");
-}
+};
 
-_removeCard (_nodeTrash) {
-  _nodeTrash.addEventListener("click", function () {
-    Card.remove();
-});
-}
-
-_likeCard (_nodeLike) {
-  _nodeLike.addEventListener("click", function () {
-  _nodeLike.classList.toggle("element__icon-like_active");
-  });
-}
-
-_zoomCard (_templateCard) { //debería tener parámetros?
-  nodeImage.addEventListener("click", function () {
-    openPopup(popupImage);
-    popupImage.querySelector(".popup__photo").src = _link;
-    popupImage.querySelector(".popup__photo").alt = _name;
-    popupImage.querySelector(".popup__photo-title").textContent = _name;
-  });
-}
-
-const overlays = document.querySelectorAll(".popup__overlay");
-overlays.forEach(function (overlay) {
-  overlay.addEventListener("click", closePopups);
-});
-
-buttonEditProfile.addEventListener("click", function () {
-  openPopup(popupProfile);
-  inputName.value = nameProfile.textContent;
-  inputAboutme.value = jobProfile.textContent;
-});
-
-closeButtons.forEach(function (button) {
+//closeButtonn declarado en script.js
+closeButtons.forEach((button) => {
   button.addEventListener("click", closePopups);
 });
 
-formProfile.addEventListener("submit", function (event) {
+//1//buttonEditProfile declarado en script.js
+buttonEditProfile.addEventListener("click", handlerButtonProfile);
+
+//2
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", closePopups);
+});
+
+formCard.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (inputTitle.value && inputUrl.value) {
+    const card = new Card(inputTitle.value, inputUrl.value);
+    elementsSection.prepend(card.renderCards);
+    formCard.reset();
+    closePopups();
+  }
+});
+
+formProfile.addEventListener("submit", (event) => {
   event.preventDefault();
   if (inputName.value && inputAboutme.value) {
     nameProfile.textContent = inputName.value;
@@ -63,18 +50,21 @@ formProfile.addEventListener("submit", function (event) {
   }
 });
 
-buttonAddCard.addEventListener("click", function () {
+buttonAddCard.addEventListener("click", () => {
   openPopup(popupCard);
 });
 
-formCard.addEventListener("submit", function (event) {
-  event.preventDefault();
-  if (inputTitle.value && inputUrl.value) {
-    const card = generateCard(inputTitle.value, inputUrl.value);
-    elementsSection.prepend(card);
-    formCard.reset();
-    closePopups();
+const keyPressEsc = (evt, action) => {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".popup_opened");
+    action(activePopup);
   }
-});
+};
 
-export {utils};
+const handlerKeyPressScape = (evt) => {
+  evt.preventDefault();
+  keyPressEsc(evt, closePopups);
+};
+ /*closePopups*/
+
+export { openPopup };

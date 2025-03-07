@@ -1,6 +1,5 @@
 import Card from "./Card.js";
-import { utils } from "./utils.js";
-/*import { FormValidator } from "./FormValidator.js";*/
+/* import { FormValidator } from "./FormValidator.js"; */
 
 const buttonEditProfile = document.querySelector(".profile__info-edit");
 const buttonAddCard = document.querySelector(".profile__add-button");
@@ -52,3 +51,23 @@ initialCards.forEach((element) => {
   const card = new Card(element, ".card-template");
   elementsSection.append(card.renderCards());
 });
+
+/* const formValidator = new FormValidator (formConfig, ".popup__form"){ //".popup__form" selecciona los tres formularios: profile, card, image
+} */
+
+/*//1
+export const handlerButtonProfile = () => {
+  openPopup(popupProfile);
+  inputName.value = nameProfile.textContent;
+  inputAboutme.value = jobProfile.textContent;
+};
+/*
+//2
+const overlays = () => {
+  document.querySelectorAll(".popup__overlay");
+};
+
+/* const closeButtonPopups(closeButtons);
+export { buttonEditProfile, closeButtons };
+import { openPopup, closePopups } from "./utils.js";
+ */

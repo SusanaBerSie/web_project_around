@@ -1,10 +1,4 @@
-/*Toma los datos de la tarjeta (tanto el texto como un enlace a la imagen)
-y un selector de elemento de plantilla como parámetros en el constructor.
-Dispone de métodos privados para trabajar con el marcado y añadir detectores de eventos.
-Tiene métodos privados para cada controlador de eventos.
-Tiene un método público que devuelve un elemento card completamente funcional y lleno de datos.
-Crea una instancia de la clase Card para cada tarjeta.*/
-
+import { openPopup } from "./utils.js";
 class Card {
   constructor(element, templateSelector) {
     this._name = element.name;
@@ -25,6 +19,21 @@ class Card {
     nodeImage.src = this._link;
     nodeText.textContent = this._name;
 
+    nodeTrash.addEventListener("click", function () {
+      card.remove();
+    });
+
+    nodeLike.addEventListener("click", function () {
+      nodeLike.classList.toggle("element__icon-like_active");
+    });
+
+    nodeImage.addEventListener("click", function () {
+      openPopup(popupImage);
+      popupImage.querySelector(".popup__photo").src = this._link;
+      popupImage.querySelector(".popup__photo").alt = this._name;
+      popupImage.querySelector(".popup__photo-title").textContent = this._name;
+    });
+
     return card;
   }
 
@@ -32,14 +41,6 @@ class Card {
     const renderCard = this._getTemplate();
     return renderCard;
   }
-
-  /*  generateCard(name, link) {
-    return this._templateSelector;
-  } */
-
-  /* function generateCard(name, link) {
-    const templateCard = document
-      .querySelector(".card-template") */
 }
 
 export default Card;
