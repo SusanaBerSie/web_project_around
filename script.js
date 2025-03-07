@@ -1,21 +1,18 @@
 import Card from "./Card.js";
-/* import { FormValidator } from "./FormValidator.js"; */
+import {
+  closePopups,
+  inputAboutme,
+  inputName,
+  inputTitle,
+  inputUrl,
+  jobProfile,
+  nameProfile,
+  popupProfile,
+} from "./utils.js";
 
-const buttonEditProfile = document.querySelector(".profile__info-edit");
-const buttonAddCard = document.querySelector(".profile__add-button");
-const popupProfile = document.querySelector(".popup_profile");
-const closeButtons = document.querySelectorAll(".popup__add-button");
-const nameProfile = document.querySelector(".profile__info-name");
-const jobProfile = document.querySelector(".profile__info-subtitle");
-const formProfile = popupProfile.querySelector(".popup__form-profile");
-const inputName = document.querySelector("#name-input");
-const inputAboutme = document.querySelector("#aboutme-input");
-const popupCard = document.querySelector(".popup__card");
-const inputTitle = document.querySelector("#photoTitle-input");
-const inputUrl = document.querySelector("#photoUrl-input");
-const formCard = document.querySelector(".popup__form-card");
-const popupImage = document.querySelector(".popup__image");
 const elementsSection = document.querySelector(".elements");
+const formCard = document.querySelector(".popup__form-card");
+const formProfile = popupProfile.querySelector(".popup__form-profile");
 
 const initialCards = [
   {
@@ -27,7 +24,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
   },
   {
-    name: "Montañas Calvas",
+    name: "MontaÃ±as Calvas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
   },
   {
@@ -44,30 +41,29 @@ const initialCards = [
   },
 ];
 
-const formElement = document.querySelector(".popup__form");
-const inputElement = document.querySelector(".popup__input");
-
 initialCards.forEach((element) => {
   const card = new Card(element, ".card-template");
   elementsSection.append(card.renderCards());
 });
 
-/* const formValidator = new FormValidator (formConfig, ".popup__form"){ //".popup__form" selecciona los tres formularios: profile, card, image
-} */
+formCard.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (inputTitle.value && inputUrl.value) {
+    const card = new Card(
+      { name: inputTitle.value, link: inputUrl.value },
+      ".card-template"
+    );
+    elementsSection.prepend(card.renderCards());
+    formCard.reset();
+    closePopups();
+  }
+});
 
-/*//1
-export const handlerButtonProfile = () => {
-  openPopup(popupProfile);
-  inputName.value = nameProfile.textContent;
-  inputAboutme.value = jobProfile.textContent;
-};
-/*
-//2
-const overlays = () => {
-  document.querySelectorAll(".popup__overlay");
-};
-
-/* const closeButtonPopups(closeButtons);
-export { buttonEditProfile, closeButtons };
-import { openPopup, closePopups } from "./utils.js";
- */
+formProfile.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (inputName.value && inputAboutme.value) {
+    nameProfile.textContent = inputName.value;
+    jobProfile.textContent = inputAboutme.value;
+    closePopups();
+  }
+});

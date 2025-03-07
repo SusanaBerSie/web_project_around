@@ -1,4 +1,5 @@
-import { openPopup } from "./utils.js";
+import { openPopup, popupImage } from "./utils.js";
+
 class Card {
   constructor(element, templateSelector) {
     this._name = element.name;
@@ -19,15 +20,15 @@ class Card {
     nodeImage.src = this._link;
     nodeText.textContent = this._name;
 
-    nodeTrash.addEventListener("click", function () {
+    nodeTrash.addEventListener("click", () => {
       card.remove();
     });
 
-    nodeLike.addEventListener("click", function () {
+    nodeLike.addEventListener("click", () => {
       nodeLike.classList.toggle("element__icon-like_active");
     });
 
-    nodeImage.addEventListener("click", function () {
+    nodeImage.addEventListener("click", () => {
       openPopup(popupImage);
       popupImage.querySelector(".popup__photo").src = this._link;
       popupImage.querySelector(".popup__photo").alt = this._name;
