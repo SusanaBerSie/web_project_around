@@ -9,7 +9,16 @@ import {
   nameProfile,
   popupProfile,
 } from "./utils.js";
+import FormValidator from "./FormValidator.js";
 
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-item",
+  inactiveButtonClass: "popup__button-item_active",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 const elementsSection = document.querySelector(".elements");
 const formCard = document.querySelector(".popup__form-card");
 const formProfile = popupProfile.querySelector(".popup__form-profile");
@@ -67,3 +76,8 @@ formProfile.addEventListener("submit", (event) => {
     closePopups();
   }
 });
+
+const formProfileValidator = new FormValidator(validationConfig, formProfile);
+formProfileValidator.enableValidation();
+const formCardValidator = new FormValidator(validationConfig, formCard);
+formCardValidator.enableValidation();

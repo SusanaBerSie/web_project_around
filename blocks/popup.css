@@ -96,7 +96,7 @@
   line-height: 22px;
   margin: 0px;
   color: #c4c4c4;
-  background-color: white;
+  background-color: black;
   cursor: pointer;
 }
 
@@ -115,26 +115,25 @@
 }
 
 .popup__button-item_active {
-  background-image: url(../images/black_rectangle.jpg);
+  background-color: white;
 }
 
 .popup__input_type_error {
-  border-bottom-color: red;
-}
-
-.popup__error {
-  color: red;
-}
-
-/* primer intento
-.popup__form-inputError {
-  visibility: hidden;
+  border-bottom-color: solid 1px red;
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   border: none;
-  border-bottom: solid 1px red;
-} */
+}
+
+.input__error {
+  color: red;
+  font-size: 12px;
+}
+
+.popup__error_visible {
+  display: block;
+}
 
 @media screen and (max-width: 544px) {
   .popup {

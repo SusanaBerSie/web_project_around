@@ -1,16 +1,15 @@
 const buttonEditProfile = document.querySelector(".profile__info-edit");
 const closeButtons = document.querySelectorAll(".popup__add-button");
 const overlays = document.querySelectorAll(".popup__overlay");
-
-export const popupProfile = document.querySelector(".popup_profile");
 const buttonAddCard = document.querySelector(".profile__add-button");
+const popupCard = document.querySelector(".popup__card");
+export const popupProfile = document.querySelector(".popup_profile");
 export const nameProfile = document.querySelector(".profile__info-name");
 export const jobProfile = document.querySelector(".profile__info-subtitle");
-export const inputName = document.querySelector("#name-input");
-export const inputAboutme = document.querySelector("#aboutme-input");
-const popupCard = document.querySelector(".popup__card");
-export const inputTitle = document.querySelector("#photoTitle-input");
-export const inputUrl = document.querySelector("#photoUrl-input");
+export const inputName = document.querySelector("#nameInput");
+export const inputAboutme = document.querySelector("#aboutmeInput");
+export const inputTitle = document.querySelector("#photoTitleInput");
+export const inputUrl = document.querySelector("#photoUrlInput");
 export const popupImage = document.querySelector(".popup__image");
 
 const openPopup = (popup) => {
@@ -45,10 +44,10 @@ buttonAddCard.addEventListener("click", () => {
   openPopup(popupCard);
 });
 
-const keyPressEsc = (evt, action) => {
+const keyPressEsc = (evt) => {
   if (evt.key === "Escape") {
-    const activePopup = document.querySelector(".popup_opened");
-    action(activePopup);
+    const exitPopup = document.querySelector(".popup_opened");
+    closePopups(exitPopup);
   }
 };
 
