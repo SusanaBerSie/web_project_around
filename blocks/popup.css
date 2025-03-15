@@ -135,9 +135,36 @@
   display: block;
 }
 
+@media screen and (max-width: 880px) and (min-width: 544px) {
+  .popup__container {
+    width: 100%;
+    max-width: 358px;
+  }
+
+  .popup__input {
+    width: 100%;
+    max-width: 358px;
+  }
+
+  .popup__add-button {
+    margin-left: auto;
+  }
+
+  .popup__button {
+    max-width: 330px;
+    margin: 0 auto;
+  }
+
+  .popup__button-item {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 544px) {
   .popup {
     top: 123px;
+    width: 90%;
   }
 
   .popup__add-button {
@@ -182,6 +209,6 @@
     height: 46px;
     font-size: 14px;
     line-height: 17px;
-    background-color: black;
+    background-color: white;
   }
 }
