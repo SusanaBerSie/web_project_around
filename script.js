@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import {
-  closePopups,
   inputAboutme,
   inputName,
   inputTitle,
@@ -10,6 +9,8 @@ import {
   popupProfile,
 } from "./utils.js";
 import FormValidator from "./FormValidator.js";
+import Popup from "./Popup.js";
+import Section from "./Section.js";
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -22,6 +23,7 @@ const validationConfig = {
 const elementsSection = document.querySelector(".elements");
 const formCard = document.querySelector(".popup__form-card");
 const formProfile = popupProfile.querySelector(".popup__form-profile");
+export const popup = document.querySelector(".popup");
 
 const initialCards = [
   {
@@ -50,9 +52,19 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((element) => {
+/* initialCards.forEach((element) => {
   const card = new Card(element, ".card-template");
   elementsSection.append(card.renderCards());
+}); */
+
+const cardSection = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, ".card-template");
+    const cardElement = card.renderCards();
+    cardSection.addItem(cardElement);
+  },
+  elementsSection,
 });
 
 formCard.addEventListener("submit", (event) => {

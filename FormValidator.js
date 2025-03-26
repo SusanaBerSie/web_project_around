@@ -35,12 +35,12 @@ class FormValidator {
 
   enableValidation = () => {
     const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((formElement) => {
+    /* formList.forEach((formElement) => {
       formElement.addEventListener("submit", function (evt) {
         evt.preventDefault();
       });
       this._setEventListeners(formElement);
-    });
+    }); */
   };
 
   _showInputError = (inputElement, errorMessage) => {
