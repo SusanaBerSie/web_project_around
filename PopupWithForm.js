@@ -1,38 +1,51 @@
-/*Crea PopupWithForm como una clase secundaria de Popup.
-
-- Lleva un callback del envío del formulario al constructor, así como el selector popup.
-*/
-
-import { popupProfile, popupImage, popupCard} from "./utils";
+import { inputTitle, inputUrl, jobProfile, nameProfile } from "./utils";
 
 class PopupWithForm extends Popup {
-  constructor (popupSelector, formElement, inputSelector) {//formElement e inputSelector repetidos de constructor de FormValidator
+  constructor (popupSelector, submitCallback) {
     super(popupSelector);
-    this.formElement = formElement;
-    this.inputSelector = inputSelector;
+    this._callback = submitCallback;
+    this._formElement = this.popup.querySelector(".popup__form");
   }}
 
-  //recopila datos de todos los campos de entrada
-  //se REPITE variable inputList de FormValidator
+  //recopila datos de todos los campos de entrada de los formularios
   _getInputValues() {
-    const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
+    const inputList = Array.from(this.formElement.querySelectorAll(".popup__input"));
+    const formValues={};
+    inputList.forEach(input => {
+      formValues[input.name] = input.value;
+    });
+    return formValues;
   }
 
-  //agrega al formulario un controlador de eventos submit y el detector de eventos click en el icono para cerrar.
+  //indica que hacer con los datos del usuario recopilados.
+  //se ejecuta evento submit, se llama a _getInputValues, los datos se pasan a la funcion
+  // callback especificada y se actualiza el perfil con los nuevos valores
   setEventListeners() {
-    this.formElement.addEventListener("submit", (evt) => {
+    super.setEventListeners;
+    this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._callback(this._getInputValues());
+      this.closePopups();
     });
-    this._setEventListeners(formElement);
-    //_handleEscClose en popup.js
   }
 
 // Modifica el método padre close() para reiniciar el formulario una vez se cierre el popup.
-closePopups(formElement) {
-  formElement.reset();
+closePopups() {
+  super.closePopups;
+  this.formElement.reset();
 }
 
 //Crea una instancia de la clase PopupWithForm para cada popup.
-const popupProfile = new PopupWithForm(popupProfile);
-const popupImage = new PopupWithForm(popupImage);
-const popupCard = new PopupWithForm(popupCard);
+const popupProfileForm = new PopupWithForm(".popup_profile",(formData)=>{
+  nameProfile.textContent = formData.name;
+  jobProfile.textContent = formData.aboutme;
+}
+popupProfileForm.setEventListeners();
+);
+
+const popupCardForm = new PopupWithForm(".popup__card",(formData)=>{
+  inputTitle.textContent = formData.title;
+  inputUrl.src = formData.url;
+}
+popupCardForm.setEventListeners();
+);

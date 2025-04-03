@@ -1,8 +1,6 @@
 import Popup from "./Popup.js";
 const buttonEditProfile = document.querySelector(".profile__info-edit");
 const buttonAddCard = document.querySelector(".profile__add-button");
-export const overlays = document.querySelectorAll(".popup__overlay");
-export const closeButtons = document.querySelectorAll(".popup__add-button");
 export const popupCard = document.querySelector(".popup__card");
 export const popupProfile = document.querySelector(".popup_profile");
 export const nameProfile = document.querySelector(".profile__info-name");
@@ -11,7 +9,6 @@ export const inputName = document.querySelector("#nameInput");
 export const inputAboutme = document.querySelector("#aboutmeInput");
 export const inputTitle = document.querySelector("#photoTitleInput");
 export const inputUrl = document.querySelector("#photoUrlInput");
-export const popupImage = document.querySelector(".popup__image");
 
 const handlerButtonProfile = () => {
   openPopup(popupProfile);

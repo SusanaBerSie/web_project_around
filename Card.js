@@ -1,4 +1,3 @@
-import { popupImage } from "./utils.js";
 import Popup from "./Popup.js";
 
 class Card {
@@ -30,10 +29,8 @@ class Card {
     });
 
     nodeImage.addEventListener("click", () => {
-      openPopup(popupImage);
-      /* popupImage.querySelector(".popup__photo").src = this._link;
-      popupImage.querySelector(".popup__photo").alt = this._name;
-      popupImage.querySelector(".popup__photo-title").textContent = this._name; */
+      const popupWithImage = new popupWithImage(".popup__image");
+      popupWithImage.openPopup(this._link, this._name);
     });
 
     return card;

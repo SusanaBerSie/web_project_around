@@ -16,17 +16,13 @@ class Section {
   //renderizar cada elemento de la página. La función renderer() renderizará cada elemento en una página.
   renderItems() {
     this.items.forEach((item) => {
-      this.renderer(item); //abajo callback
-      /* (item) => {
-    const card = new Card(item, ".card-template");
-    const cardElement = card.renderCards();
-    cardSection.addItem(cardElement); */
+      this.renderer(item);
     });
   }
 
   //toma elemento del DOM y lo agrega en el contenedor
   addItem(element) {
-    elementContainer.prepend(element);
+    this.elementContainer.prepend(element);
   }
 }
 export default Section;

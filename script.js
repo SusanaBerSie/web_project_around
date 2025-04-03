@@ -52,11 +52,6 @@ const initialCards = [
   },
 ];
 
-/* initialCards.forEach((element) => {
-  const card = new Card(element, ".card-template");
-  elementsSection.append(card.renderCards());
-}); */
-
 const cardSection = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -66,6 +61,8 @@ const cardSection = new Section({
   },
   elementsSection,
 });
+
+cardSection.renderItems();
 
 formCard.addEventListener("submit", (event) => {
   event.preventDefault();
