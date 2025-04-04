@@ -7,9 +7,10 @@ import {
   jobProfile,
   nameProfile,
   popupProfile,
+  popupCard, //paraq ue?
 } from "./utils.js";
 import FormValidator from "./FormValidator.js";
-import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
 import Section from "./Section.js";
 
 const validationConfig = {
@@ -52,15 +53,18 @@ const initialCards = [
   },
 ];
 
-const cardSection = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, ".card-template");
-    const cardElement = card.renderCards();
-    cardSection.addItem(cardElement);
+//Crear y renderizar seccion de tarjetas
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, ".card-template");
+      const cardElement = card.renderCards();
+      cardSection.addItem(cardElement);
+    },
   },
-  elementsSection,
-});
+  elementsSection
+);
 
 cardSection.renderItems();
 

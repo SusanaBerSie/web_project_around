@@ -8,9 +8,9 @@ class UserInfo {
   //es util cuando es necesario mostrar los datos del usuario en el formulario abierto
   getUserInfo() {
     return {
-    name: this._elementUserName.textContent;
-    job: this._elementUserJob.textContent;
-  };
+      name: this._elementUserName.textContent,
+      job: this._elementUserJob.textContent,
+    };
   }
 
   //toma los datos del nuevo usuario y los agrega en la página
@@ -20,3 +20,5 @@ class UserInfo {
     this._elementUserJob.textContent = newJob;
   }
 }
+
+export default UserInfo;

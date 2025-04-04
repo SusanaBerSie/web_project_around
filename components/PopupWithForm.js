@@ -1,15 +1,16 @@
 import { inputTitle, inputUrl, jobProfile, nameProfile } from "./utils";
+import Popup from "./Popup";
 
 class PopupWithForm extends Popup {
   constructor (popupSelector, submitCallback) {
     super(popupSelector);
     this._callback = submitCallback;
-    this._formElement = this.popup.querySelector(".popup__form");
-  }}
+    this._formElement = this._popup.querySelector(".popup__form");
+  }
 
   //recopila datos de todos los campos de entrada de los formularios
   _getInputValues() {
-    const inputList = Array.from(this.formElement.querySelectorAll(".popup__input"));
+    const inputList = Array.from(this._formElement.querySelectorAll(".popup__input"));
     const formValues={};
     inputList.forEach(input => {
       formValues[input.name] = input.value;
@@ -21,7 +22,7 @@ class PopupWithForm extends Popup {
   //se ejecuta evento submit, se llama a _getInputValues, los datos se pasan a la funcion
   // callback especificada y se actualiza el perfil con los nuevos valores
   setEventListeners() {
-    super.setEventListeners;
+    super.setEventListeners();
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._callback(this._getInputValues());
@@ -32,7 +33,8 @@ class PopupWithForm extends Popup {
 // Modifica el método padre close() para reiniciar el formulario una vez se cierre el popup.
 closePopups() {
   super.closePopups;
-  this.formElement.reset();
+  this._formElement.reset();
+}
 }
 
 //Crea una instancia de la clase PopupWithForm para cada popup.
@@ -49,3 +51,5 @@ const popupCardForm = new PopupWithForm(".popup__card",(formData)=>{
 }
 popupCardForm.setEventListeners();
 );
+
+export default PopupWithForm;

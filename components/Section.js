@@ -1,11 +1,3 @@
-//presentar lista de elementos en la página
-
-/*Contiene un objeto con dos propiedades (items y renderer) como el primer parámetro
-del constructor. La propiedad items funciona como un array de datos, que debes añadir
-a una página cuando se inicializa la clase. La propiedad rendereres la función
-responsable de crear y renderizar los datos en una página.
-- El segundo parámetro debe ser un selector de clase CSS donde vas a agregar los
-elementos de la tarjeta.*/
 class Section {
   constructor({ items, renderer }, elementsContainerSelector) {
     this.items = items;

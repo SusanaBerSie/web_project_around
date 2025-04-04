@@ -1,4 +1,5 @@
 import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
   constructor(element, templateSelector) {
@@ -29,7 +30,7 @@ class Card {
     });
 
     nodeImage.addEventListener("click", () => {
-      const popupWithImage = new popupWithImage(".popup__image");
+      const popupWithImage = new PopupWithImage(".popup__image");
       popupWithImage.openPopup(this._link, this._name);
     });
 

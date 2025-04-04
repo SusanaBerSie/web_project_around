@@ -1,4 +1,5 @@
-import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
+
 const buttonEditProfile = document.querySelector(".profile__info-edit");
 const buttonAddCard = document.querySelector(".profile__add-button");
 export const popupCard = document.querySelector(".popup__card");
