@@ -1,4 +1,3 @@
-/*import { inputTitle, inputUrl, jobProfile, nameProfile } from "./utils";*/
 import Popup from "./Popup.js";
 
 class PopupWithForm extends Popup {
@@ -14,7 +13,6 @@ class PopupWithForm extends Popup {
 
   closePopups() {
     super._closePopups;
-    // this._formElement.reset();
   }
 
   setEventListeners() {
@@ -35,8 +33,6 @@ class PopupWithForm extends Popup {
   }
 
   //indica que hacer con los datos del usuario recopilados.
-  //se ejecuta evento submit, se llama a _getInputValues, los datos se pasan a la funcion
-  // callback especificada y se actualiza el perfil con los nuevos valores
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener("submit", (evt) => {

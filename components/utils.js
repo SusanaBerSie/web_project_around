@@ -36,11 +36,3 @@ export const inputName = document.querySelector("#nameInput");
 export const inputAboutme = document.querySelector("#aboutmeInput");
 export const inputTitle = document.querySelector("#photoTitleInput");
 export const inputUrl = document.querySelector("#photoUrlInput");
-
-/*
-const handlerButtonProfile = () => {
-  openPopup(popupProfile);
-  inputName.value = nameProfile.textContent;
-  inputAboutme.value = jobProfile.textContent;
-};
-*/
