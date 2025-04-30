@@ -1,6 +1,9 @@
+import Popup from "./Popup.js";
+
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._formElement = document.querySelector(popupSelector);
     this._image = this._popup.querySelector(".popup__photo");
     this._title = this._popup.querySelector(".popup__photo-title");
   }
@@ -12,6 +15,15 @@ class PopupWithImage extends Popup {
     this._title.textContent = imageTitle;
 
     super.openPopup();
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this._callback(this._getInputValues());
+      this.closePopups();
+    });
   }
 }
 

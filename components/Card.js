@@ -9,6 +9,9 @@ class Card {
   }
 
   _getTemplate() {
+    console.log("dentroDeCard");
+    console.log(this._name);
+    console.log(this._link);
     const templateSelector = document
       .querySelector(this._templateSelector)
       .content.querySelector(".element");
@@ -18,6 +21,7 @@ class Card {
     const nodeTrash = card.querySelector(".element__icon-trash");
     const nodeLike = card.querySelector(".element__icon-like");
     nodeImage.alt = this._name;
+
     nodeImage.src = this._link;
     nodeText.textContent = this._name;
 
@@ -31,6 +35,7 @@ class Card {
 
     nodeImage.addEventListener("click", () => {
       const popupWithImage = new PopupWithImage(".popup__image");
+      popupWithImage.setEventListeners();
       popupWithImage.openPopup(this._link, this._name);
     });
 

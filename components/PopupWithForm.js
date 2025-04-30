@@ -1,20 +1,36 @@
-import { inputTitle, inputUrl, jobProfile, nameProfile } from "./utils";
-import Popup from "./Popup";
+/*import { inputTitle, inputUrl, jobProfile, nameProfile } from "./utils";*/
+import Popup from "./Popup.js";
 
 class PopupWithForm extends Popup {
-  constructor (popupSelector, submitCallback) {
+  constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this._callback = submitCallback;
     this._formElement = this._popup.querySelector(".popup__form");
   }
 
+  openPopup() {
+    super.openPopup();
+  }
+
+  closePopups() {
+    super._closePopups;
+    // this._formElement.reset();
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+  }
+
   //recopila datos de todos los campos de entrada de los formularios
   _getInputValues() {
-    const inputList = Array.from(this._formElement.querySelectorAll(".popup__input"));
-    const formValues={};
-    inputList.forEach(input => {
+    const inputList = Array.from(
+      this._formElement.querySelectorAll(".popup__input")
+    );
+    const formValues = {};
+    inputList.forEach((input) => {
       formValues[input.name] = input.value;
     });
+    console.log(formValues);
     return formValues;
   }
 
@@ -29,27 +45,5 @@ class PopupWithForm extends Popup {
       this.closePopups();
     });
   }
-
-// Modifica el método padre close() para reiniciar el formulario una vez se cierre el popup.
-closePopups() {
-  super.closePopups;
-  this._formElement.reset();
 }
-}
-
-//Crea una instancia de la clase PopupWithForm para cada popup.
-const popupProfileForm = new PopupWithForm(".popup_profile",(formData)=>{
-  nameProfile.textContent = formData.name;
-  jobProfile.textContent = formData.aboutme;
-}
-popupProfileForm.setEventListeners();
-);
-
-const popupCardForm = new PopupWithForm(".popup__card",(formData)=>{
-  inputTitle.textContent = formData.title;
-  inputUrl.src = formData.url;
-}
-popupCardForm.setEventListeners();
-);
-
 export default PopupWithForm;
