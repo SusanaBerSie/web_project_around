@@ -9,9 +9,6 @@ class Card {
   }
 
   _getTemplate() {
-    console.log("dentroDeCard");
-    console.log(this._name);
-    console.log(this._link);
     const templateSelector = document
       .querySelector(this._templateSelector)
       .content.querySelector(".element");
