@@ -1,7 +1,9 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
+import Api from "../components/Api.js";
 
 import {
   initialCards,
@@ -54,23 +56,35 @@ const formProfile = popupProfile.querySelector(".popup__form-profile");
 const popup = document.querySelector(".popup");
 
 function addCard(item) {
-  const card = new Card(item, ".card-template");
+  const card = new Card(item, ".card-template", () => {});
   return card.renderCards();
 }
 
-//Crear y renderizar seccion de tarjetas
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const cardElement = addCard(item);
-      cardSection.addItem(cardElement);
-    },
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1/",
+  headers: {
+    authorization: "55fccc8a-cf9c-4f13-a85d-ecd74e12c690",
+    "Content-Type": "application/json",
   },
-  elementsSection
-);
+});
 
-cardSection.renderItems();
+const deleteCardPopup = new PopupWithConfirmation(".popup__confirm");
+deleteCardPopup.setEventListeners();
+
+//Crear y renderizar seccion de tarjetas
+api.getInitialCards().then((initialCards) => {
+  const cardSection = new Section(
+    {
+      items: initialCards,
+      renderer: (item) => {
+        const cardElement = addCard(item);
+        cardSection.addItem(cardElement);
+      },
+    },
+    elementsSection
+  );
+  cardSection.renderItems();
+});
 
 formProfile.addEventListener("submit", (event) => {
   event.preventDefault();

@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
-  constructor(element, templateSelector) {
+  constructor(element, templateSelector, handleDeleteIcon) {
     this._name = element.name;
     this._link = element.link;
     this._templateSelector = templateSelector;

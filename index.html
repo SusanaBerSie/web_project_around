@@ -127,6 +127,7 @@
       <div class="popup popup__image">
         <div class="popup__overlay"></div>
         <div class="popup__image-zoom">
+          <div class="popup"></div>
           <img
             class="popup__X-button"
             src="./images/X-button.png"
@@ -134,6 +135,45 @@
           />
           <img class="popup__photo" src="" alt="" />
           <p class="popup__photo-title"></p>
+        </div>
+      </div>
+      <div class="popup popup__confirm">
+        <div class="popup__overlay"></div>
+        <img
+          class="popup__X-button"
+          src="./images/X-button.png"
+          alt="close-pupop-button"
+        />
+        <div class="popup__container">
+          <h2 class="popup__confirm-title">¿Estás seguro/a?</h2>
+          <button class="popup__confirm-button-item">Sí</button>
+        </div>
+      </div>
+      <div class="popup popup__switchPhotoProfile">
+        <div class="popup__overlay"></div>
+        <img
+          class="popup__X-button"
+          src="./images/X-button.png"
+          alt="close-pupop-button"
+        />
+        <div class="popup__switchPhotoProfile-container">
+          <h2 class="switchPhotoProfile-title">Cambiar foto de perfil</h2>
+          <form class="popup__form popup__form-switchPhotoProfile">
+            <fieldset class="popup__confirm-fieldset">
+              <input
+                required
+                type="url"
+                class="popup__input popup__input_type_error"
+                id="photoProfileUrlInput"
+                name="url"
+                placeholder="URL de la foto"
+              />
+              <span class="input__error photoUrlInput-error"></span>
+            </fieldset>
+            <button type="submit" class="popup__confirm-button-item">
+              Guardar
+            </button>
+          </form>
         </div>
       </div>
     </div>
