@@ -5,6 +5,10 @@ class PopupWithForm extends Popup {
     super(popupSelector);
     this._callback = submitCallback;
     this._formElement = this._popup.querySelector(".popup__form");
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(".popup__input")
+    );
+    this._submitButton = this._formElement.querySelector(".popup__button-item");
   }
 
   openPopup() {
@@ -13,22 +17,47 @@ class PopupWithForm extends Popup {
 
   closePopups() {
     super._closePopups;
+    this._formElement.reset();
   }
 
   setEventListeners() {
     super.setEventListeners();
   }
 
+  //establecer el texto del boton de envío
+  setSubmitButtonText(text) {
+    if (this._submitButton) {
+      this._submitButton.textContent = text;
+    }
+  }
+
+  //mostrar texto de carga
+  renderLoading(
+    isLoading,
+    loadingText = "Guardando...",
+    defaultText = "Guardar"
+  ) {
+    if (this._submitButton) {
+      this._submitButton.textContent = isLoading ? loadingText : defaultText;
+    }
+  }
+
   //recopila datos de todos los campos de entrada de los formularios
   _getInputValues() {
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(".popup__input")
-    );
     const formValues = {};
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       formValues[input.name] = input.value;
     });
     return formValues;
+  }
+
+  //Establecer valores en el formulario
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      if (data[input.name]) {
+        input.value = data[input.name];
+      }
+    });
   }
 
   //indica que hacer con los datos del usuario recopilados.
@@ -37,7 +66,6 @@ class PopupWithForm extends Popup {
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._callback(this._getInputValues());
-      this.closePopups();
     });
   }
 }

@@ -58,7 +58,7 @@
   border: none;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   padding: 0px 35px 48px 34px;
   margin: 0px;
 }
@@ -80,8 +80,6 @@
 
 .popup__button {
   border: none;
-  width: 358px;
-  height: 50px;
   margin: 0px;
   padding: 0px 36px 36px;
 }
@@ -165,14 +163,6 @@
   flex-direction: column;
   padding: 0px 36px 10px;
   margin: 0px;
-}
-
-.popup__switchPhotoProfile-container {
-  width: 430px;
-  height: 272px;
-  background-color: white;
-  z-index: 1;
-  border-radius: 4%;
 }
 
 .switchPhotoProfile-title {

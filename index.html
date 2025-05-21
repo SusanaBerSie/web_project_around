@@ -22,11 +22,9 @@
       <main class="content">
         <section class="profile">
           <div class="profile__box-info">
-            <img
-              src="./images/avatar.jpg"
-              alt="Avatar"
-              class="profile__avatar"
-            />
+            <div class="profile__avatar">
+              <img src="./images/avatar.jpg" alt="Avatar" />
+            </div>
             <div class="profile__box">
               <div class="profile__info">
                 <h1 class="profile__info-name">Jacques Cousteau</h1>
@@ -146,19 +144,23 @@
         />
         <div class="popup__container">
           <h2 class="popup__confirm-title">¿Estás seguro/a?</h2>
-          <button class="popup__confirm-button-item">Sí</button>
+          <form class="popup__form popup__formConfirm">
+            <fieldset class="popup__button">
+              <button class="popup__button-item">Sí</button>
+            </fieldset>
+          </form>
         </div>
       </div>
-      <div class="popup popup__switchPhotoProfile">
+      <div class="popup popup__newPhotoProfile">
         <div class="popup__overlay"></div>
         <img
           class="popup__X-button"
           src="./images/X-button.png"
           alt="close-pupop-button"
         />
-        <div class="popup__switchPhotoProfile-container">
-          <h2 class="switchPhotoProfile-title">Cambiar foto de perfil</h2>
-          <form class="popup__form popup__form-switchPhotoProfile">
+        <div class="popup__container">
+          <h2 class="popup__title">Cambiar foto de perfil</h2>
+          <form class="popup__form popup__form-newPhotoProfile">
             <fieldset class="popup__confirm-fieldset">
               <input
                 required
@@ -170,9 +172,10 @@
               />
               <span class="input__error photoUrlInput-error"></span>
             </fieldset>
-            <button type="submit" class="popup__confirm-button-item">
-              Guardar
-            </button>
+
+            <fieldset class="popup__button">
+              <button type="submit" class="popup__button-item">Guardar</button>
+            </fieldset>
           </form>
         </div>
       </div>

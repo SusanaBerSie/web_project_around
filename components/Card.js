@@ -2,10 +2,15 @@ import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 
 class Card {
-  constructor(element, templateSelector, handleDeleteIcon) {
+  constructor(element, templateSelector, addNewCard, removeCard, cardLiked) {
     this._name = element.name;
     this._link = element.link;
     this._templateSelector = templateSelector;
+    this._addNewCard = addNewCard;
+    this._removeCard = removeCard;
+    this._cardLiked = cardLiked;
+    this._id = element._id;
+    this._isLiked = element.isLiked;
   }
 
   _getTemplate() {
@@ -17,17 +22,20 @@ class Card {
     const nodeText = card.querySelector(".element__title");
     const nodeTrash = card.querySelector(".element__icon-trash");
     const nodeLike = card.querySelector(".element__icon-like");
-    nodeImage.alt = this._name;
 
+    nodeImage.alt = this._name;
     nodeImage.src = this._link;
     nodeText.textContent = this._name;
 
     nodeTrash.addEventListener("click", () => {
-      card.remove();
+      this._removeCard(card);
+      //card.remove();
     });
 
     nodeLike.addEventListener("click", () => {
+      this._cardLiked(this._id, this._isLiked);
       nodeLike.classList.toggle("element__icon-like_active");
+      this._isLiked = !this._isLiked;
     });
 
     nodeImage.addEventListener("click", () => {

@@ -36,3 +36,7 @@ export const inputName = document.querySelector("#nameInput");
 export const inputAboutme = document.querySelector("#aboutmeInput");
 export const inputTitle = document.querySelector("#photoTitleInput");
 export const inputUrl = document.querySelector("#photoUrlInput");
+export const buttonNewPhotoProfile = document.querySelector(".profile__avatar");
+export const popupNewPhotoProfile = document.querySelector(
+  ".popup__newPhotoProfile"
+);

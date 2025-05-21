@@ -16,6 +16,7 @@ class UserInfo {
   //toma los datos del nuevo usuario y los agrega en la página
   //actualiza los elementos del DOM con la nueva información
   setUserInfo(newName, newJob) {
+    console.log(this._elementUserName);
     this._elementUserName.textContent = newName;
     this._elementUserJob.textContent = newJob;
   }

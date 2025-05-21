@@ -1,7 +1,7 @@
 class Api {
-  constructor(url, token) {
-    this.url = url;
-    this.token = token;
+  constructor(apiConfig) {
+    this.url = apiConfig.baseUrl;
+    this.token = apiConfig.headers.authorization;
   }
 
   // 1. cargar la información del usuario desde el servidor
@@ -11,26 +11,17 @@ class Api {
       headers: {
         authorization: this.token,
       },
-    });
-  }
-
-  // 2. cargar las tarjetas desde el servidor
-  //Utiliza este array cuando se muestren las tarjetas precargadas,
-  // y elimina el antiguo código para mostrar las tarjetas iniciales.
-  getInitialCards() {
-    fetch(this.url + "cards/", {
-      method: "GET",
-      headers: {
-        authorization: this.token,
-      },
     }).then((res) => {
-      console.log(res);
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
   // 3. editar perfil
   editProfile(userName, userAbout) {
-    fetch(this.url + "users/me", {
+    return fetch(this.url + "users/me", {
       method: "PATCH",
       headers: {
         authorization: this.token,
@@ -40,82 +31,101 @@ class Api {
         name: userName,
         about: userAbout,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
+  // 2. cargar las tarjetas desde el servidor
+  //Utiliza este array cuando se muestren las tarjetas precargadas,
+  // y elimina el antiguo código para mostrar las tarjetas iniciales.
+  getInitialCards() {
+    return fetch(this.url + "cards/", {
+      method: "GET",
+      headers: {
+        authorization: this.token,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
   // 4. agregar una nueva tarjeta
-  addNewCard() {
-    fetch(this.url + "cards/", {
+  addNewCard(name, link) {
+    return fetch(this.url + "cards/", {
       method: "POST",
       headers: {
         authorization: this.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: userName,
-        link: this.url,
+        name: name,
+        link: link,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
-  // 5. alternar ''me gusta'' en una tarjeta
-  isLiked() {}
+  // 5. alternar ''me gusta'' en una tarjeta /
 
+  // 8.Añadir y eliminar "me gusta”
+  changeLikeCardStatus(cardId, isLiked) {
+    return fetch(this.url + "cards/" + cardId + "/likes", {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: {
+        authorization: this.token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        /*vacio?*/
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
   // 7. eliminar tarjeta
   deleteCard(cardId) {
-    fetch(this.url + "cards/" + cardId, {
+    return fetch(this.url + "cards/" + cardId, {
       method: "DELETE",
       headers: {
         authorization: this.token,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        _id: cardId,
-        //datos de la tarjeta. Return??
-      }),
-    });
-  }
-
-  // 8. Añadir y eliminar "me gusta"
-  addLike() {
-    fetch(this.url + "cards/" + cardId + "/likes", {
-      method: "PUT",
-      headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        _id: cardId,
-        //datos de la tarjeta. Return??
-      }),
-    });
-
-    //Para eliminar el "me gusta", basta con enviar una solicitud DELETE con la misma URL
-    // cardId en la URL debe sustituirse por la propiedad _id de la tarjeta correspondiente.
-    fetch(this.url + "cards/" + cardId + "/likes", {
-      method: "DELETE",
-      headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        _id: cardId,
-        //datos de la tarjeta. Return??
-      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
   // 9.Actualizar la foto de perfil  PATCH https://around-api.es.tripleten-services.com/v1/users/me/avatar
   switchPhotoProfile(url) {
-    fetch(this.url + "users/me/avatar", {
+    return fetch(this.url + "users/me/avatar", {
       method: "PATCH",
       headers: {
         authorization: this.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        avatar: url,
+        avatar: url, //enlace a la nueva foto de perfil. Devolver error si no se agrega enlace
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 }
