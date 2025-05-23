@@ -5,9 +5,10 @@ class PopupWithConfirmation extends Popup {
     super(popupSelector);
 
     this._formElement = this._popup.querySelector(".popup__formConfirm");
-    console.log("2.-" + this._formElement);
+    this._confirmButton = this._popup.querySelector(".popup__button-item");
     //this._handleSubmitCallback = handleSubmitCallback;
   }
+
   openPopup() {
     super.openPopup();
   }
@@ -17,14 +18,17 @@ class PopupWithConfirmation extends Popup {
   }
 
   setEventListeners() {
-    console.log("1.-" + this._formElement);
-    this._formElement.addEventListener("submit", (evt) => {
-      console.log("click");
-      evt.preventDefault();
-      // this._handleSubmitCallback();
-    });
-
     super.setEventListeners();
+
+    if (this._formElement) {
+      this._formElement.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        // this._handleSubmitCallback();
+        if (this._handleSubmitCallback) {
+          this._handleSubmitCallback();
+        }
+      });
+    }
   }
 }
 

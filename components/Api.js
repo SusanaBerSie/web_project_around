@@ -40,8 +40,6 @@ class Api {
   }
 
   // 2. cargar las tarjetas desde el servidor
-  //Utiliza este array cuando se muestren las tarjetas precargadas,
-  // y elimina el antiguo código para mostrar las tarjetas iniciales.
   getInitialCards() {
     return fetch(this.url + "cards/", {
       method: "GET",
@@ -74,8 +72,6 @@ class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
-
-  // 5. alternar ''me gusta'' en una tarjeta /
 
   // 8.Añadir y eliminar "me gusta”
   changeLikeCardStatus(cardId, isLiked) {
@@ -110,7 +106,7 @@ class Api {
     });
   }
 
-  // 9.Actualizar la foto de perfil  PATCH https://around-api.es.tripleten-services.com/v1/users/me/avatar
+  // 9.Actualizar la foto de perfil
   switchPhotoProfile(url) {
     return fetch(this.url + "users/me/avatar", {
       method: "PATCH",
@@ -119,7 +115,7 @@ class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        avatar: url, //enlace a la nueva foto de perfil. Devolver error si no se agrega enlace
+        avatar: url,
       }),
     }).then((res) => {
       if (res.ok) {

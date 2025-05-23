@@ -13,6 +13,10 @@ class Card {
     this._isLiked = element.isLiked;
   }
 
+  getId() {
+    return this._id;
+  }
+
   _getTemplate() {
     const templateSelector = document
       .querySelector(this._templateSelector)
@@ -29,7 +33,6 @@ class Card {
 
     nodeTrash.addEventListener("click", () => {
       this._removeCard(card);
-      //card.remove();
     });
 
     nodeLike.addEventListener("click", () => {

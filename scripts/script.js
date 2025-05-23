@@ -29,7 +29,11 @@ const api = new Api({
   },
 });
 
-const userInfo = new UserInfo(".profile__info-name", ".profile__info-subtitle");
+const userInfo = new UserInfo(
+  ".profile__info-name",
+  ".profile__info-subtitle",
+  ".profile__avatar-photo"
+);
 
 //popup del Perfil
 const profilePopup = new PopupWithForm(".popup_profile", (formData) => {
@@ -37,7 +41,7 @@ const profilePopup = new PopupWithForm(".popup_profile", (formData) => {
   api
     .editProfile(formData.name, formData.aboutme)
     .then((userData) => {
-      userInfo.setUserInfo(userData.name, userData.about);
+      userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
       profilePopup._closePopups();
     })
     .catch((error) => {
@@ -71,11 +75,12 @@ const newPhotoProfilePopup = new PopupWithForm(
   ".popup__newPhotoProfile",
   (formData) => {
     newPhotoProfilePopup.renderLoading(true);
-    api.switchPhotoProfile(formData.link);
-    then((userData) => {
-      userInfo.setUserInfo(userData.link);
-      popupNewPhotoProfile._closePopups();
-    })
+    api
+      .switchPhotoProfile(formData.url)
+      .then((userData) => {
+        userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+        newPhotoProfilePopup._closePopups();
+      })
       .catch((error) => {
         console.error("Error al actualizar la foto perfil:", error);
       })
@@ -84,10 +89,6 @@ const newPhotoProfilePopup = new PopupWithForm(
       });
   }
 );
-
-//popup confirmar eliminación de tarjetas
-const deleteCardPopup = new PopupWithConfirmation(".popup__confirm");
-deleteCardPopup.setEventListeners();
 
 profilePopup.setEventListeners();
 cardPopup.setEventListeners();
@@ -131,9 +132,21 @@ function addCard(item) {
     item,
     ".card-template",
     () => {},
-    (card) => {
-      const deleteCardPopup = new PopupWithConfirmation(".popup__formConfirm");
+    () => {
+      const deleteCardPopup = new PopupWithConfirmation(".popup__confirm");
       deleteCardPopup.setEventListeners();
+
+      deleteCardPopup.setSubmitAction(() => {
+        api
+          .deleteCard(card.getId())
+          .then(() => {
+            card._removeCard();
+            deleteCardPopup._closePopups();
+          })
+          .catch((error) => {
+            console.log("Error al eliminar tarjeta:", error);
+          });
+      });
       deleteCardPopup.openPopup();
     },
     (cardId, isLiked) => {
@@ -147,11 +160,10 @@ function addCard(item) {
 let cardSection;
 
 //cargar la información del usuario y las tarjetas iniciales
-
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    userInfo.setUserInfo(userData.name, userData.about);
-    const cardSection = new Section(
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+    cardSection = new Section(
       {
         items: initialCards,
         renderer: (item) => {
@@ -171,46 +183,3 @@ const formProfileValidator = new FormValidator(validationConfig, formProfile);
 formProfileValidator.enableValidation();
 const formCardValidator = new FormValidator(validationConfig, formCard);
 formCardValidator.enableValidation();
-
-/*
-
-(([userData, initialCards])=>{
-  userInfo.setUserInfo(userData.name, userData.about);
-  api.getInitialCards().then((initialCards) => {
-  const cardSection = new Section(
-    {
-      items: initialCards,
-      renderer: (item) => {
-        const cardElement = addCard(item);
-        cardSection.addItem(cardElement);
-      },
-    },
-    elementsSection
-  );
-  cardSection.renderItems();
-});
-
-//CAMBIAR FOTO DE PERFIL
-const newPhotoProfile = new PopupWithForm(
-  ".popup__newPhotoProfile",
-  (formData) => {
-    const card = { link: formData.url };
-    const cardElement = addCard(card);
-    cardSection.addItem(cardElement);
-    cardPopup._closePopups();
-  }
-);
-const popup = document.querySelector(".popup");
-
-api.getUserInfo().then((user) => {
-  console.log(user);
-});
-
-formProfile.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (inputName.value && inputAboutme.value) {
-    nameProfile.textContent = inputName.value;
-    jobProfile.textContent = inputAboutme.value;
-    profilePopup._closePopups();
-  }
-}); */
