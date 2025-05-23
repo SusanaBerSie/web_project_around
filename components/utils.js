@@ -1,4 +1,3 @@
-//import PopupWithForm from "./PopupWithForm.js";
 export const initialCards = [
   {
     name: "Valle de Yosemite",

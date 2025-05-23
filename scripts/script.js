@@ -140,7 +140,7 @@ function addCard(item) {
         api
           .deleteCard(card.getId())
           .then(() => {
-            card._removeCard();
+            card.deleteCard();
             deleteCardPopup._closePopups();
           })
           .catch((error) => {

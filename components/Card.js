@@ -1,5 +1,4 @@
-import Popup from "./Popup.js";
-import PopupWithImage from "./PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 class Card {
   constructor(element, templateSelector, addNewCard, removeCard, cardLiked) {
@@ -26,7 +25,7 @@ class Card {
     const nodeText = card.querySelector(".element__title");
     const nodeTrash = card.querySelector(".element__icon-trash");
     const nodeLike = card.querySelector(".element__icon-like");
-
+    this.card = card;
     nodeImage.alt = this._name;
     nodeImage.src = this._link;
     nodeText.textContent = this._name;
@@ -53,6 +52,10 @@ class Card {
   renderCards() {
     const renderCard = this._getTemplate();
     return renderCard;
+  }
+
+  deleteCard() {
+    this.card.remove();
   }
 }
 
